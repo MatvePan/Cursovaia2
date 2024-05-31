@@ -34,7 +34,6 @@ Student WriteStudent(){ //Функция ввода данных студент�
     cin >> student.salary;
     cout << "Enter student group\n";
     cin >> student.group;
-    //group=student.group;
     cout << "Enter student extra information\n";
     cin >> student.extra;
     cout << "Enter student index\n";
@@ -72,7 +71,7 @@ void DeleteStudent(Massive<Student> massive){ //Функция удаления 
     cout << "Enter student index\n";
     cin >> del;
     for(int i=0; i<massive.Count(); i++){
-        if(massive.Number(i).allnum==del){
+        if(massive.Number(i).index==del){
             massive.Remove(i);
             inStock=true;
             break;
@@ -88,7 +87,7 @@ void StudentEditor(Massive<Student> massive){ //Функция редактир�
     cout << "Enter student number\n";
     cin >> num;
     for(int i=0; i<massive.Count(); i++){
-        if(massive.Number(i).allnum==num){
+        if(massive.Number(i).index==num){
             cout << "Student Editor\n;";
             cout << "1. New FIO\n";
             cout << "2. New group\n";
@@ -306,12 +305,10 @@ void AboutGroup(Massive<Student> massive){ //Функция получения �
 }
 
 int main(){ //Главная функция
-    system("chcp 1251>NULL");
     Massive<Student> massive;
     int mode;
     while(true){
         system("pause");
-        system("cls");
         cout << "Students\n";
         cout << "11. Add student\n";
         cout << "12. Delete student\n";
