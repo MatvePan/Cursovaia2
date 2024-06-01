@@ -1,6 +1,7 @@
 #include "iostream"
 #include "string"
 #include "massive.h"
+#include "fstream"
 using namespace std;
 
 struct Student{ //Структуры данных студента
@@ -302,6 +303,23 @@ void AboutGroup(Massive<Student> massive){ //Функция получения �
     }
     if(!graup)
         cout << "No group\n";
+}
+
+void Save(Massive<Student> massive){
+    Student student;
+    ifstream save;
+    save.open("save.txt");
+    string word;
+    int* table;
+    for(int i=0; i<4; i++){
+        switch(i){
+            case 1:
+                student.fio=word;
+                break;
+            case 2:
+                student.group=
+        }
+    }
 }
 
 int main(){ //Главная функция
