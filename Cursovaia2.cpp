@@ -2,6 +2,7 @@
 #include "string"
 #include "massive.h"
 #include "fstream"
+#include "cmath"
 using namespace std;
 
 struct Student{ //Структуры данных студента
@@ -274,7 +275,7 @@ void GroupEditor(Massive<Student> massive){ //Функция редактиро�
     bool Group;
     cout << "Enter old group number\n";
     cin >> oldnum;
-    cout << "Enter new gtoup number\n";
+    cout << "Enter new group number\n";
     cin >> newnum;
     for(int i=0; i<massive.Count(); i++){
         if(massive.Number(i).group==oldnum){
@@ -305,21 +306,71 @@ void AboutGroup(Massive<Student> massive){ //Функция получения �
         cout << "No group\n";
 }
 
-void Save(Massive<Student> massive){
+int Fun1(string word){
+    int num=0, j=0;
+    int* table=new int(word.size());
+    for(int i=0; i<word.size(); i++)
+        table[i]=word[i]-48;
+    for(int i=word.size()-1; i>=0; i--, j++)
+        num+=table[i]*pow(10, j);
+    return num;
+}
+
+int* Fun2(string word){
+    int toble[5]={};
+    int j=0;
+    for(int i=0; i<word.size(); i++){
+        if(word[i]!=' '){
+            toble[j]=word[i]-48;
+            j++;
+        }
+    }
+    return toble;
+}
+
+void Save(Massive<Student> massive){ //Функция записи в файл
     Student student;
     ifstream save;
     save.open("save.txt");
     string word;
     int* table;
-    for(int i=0; i<4; i++){
-        switch(i){
+    int t=0;
+    while(getline(save, word)){
+        t++;
+        switch(t){
             case 1:
                 student.fio=word;
                 break;
             case 2:
-                student.group=
+                student.group=Fun1(word);
+                break;
+            case 3:
+                student.index=Fun1(word);
+                break;
+            case 4:
+                table=Fun2(word);
+                for(int i=0; i<5; i++)
+                    student.studnum[i]=table[i];
+                break;
+            case 5:
+                student.salary=Fun1(word);
+                break;
         }
     }
+}
+
+void Load(Massive<Student> massive){ //Функция загрузки из файла
+    ofstream load;
+    load.open("load.txt");
+    for(int i=0; i<massive.Count(); i++){
+        Student student=massive.Number(i);
+        load << student.fio << "|" << student.index << "\n";
+        load << student.group << "\n";
+        for(int i=0; i<5; i++)
+            load << student.studnum[i] << "|" << "\n";
+        load << student.salary << "\n";
+    }
+    load.close();
 }
 
 int main(){ //Главная функция
@@ -339,6 +390,8 @@ int main(){ //Главная функция
         cout << "23. Edit group number\n";
         cout << "24. Show group students information\n";
         cout << "Other\n";
+        cout << "7. Save data\n";
+        cout << "8. load data\n";
         cout << "9. Erase data\n";
         cout << "0. Exit\n";
         cout << "Enter number for choose\n";
@@ -370,6 +423,12 @@ int main(){ //Главная функция
                 break;
             case 24:
                 AboutGroup(massive);
+                break;
+            case 7:
+                Save(massive);
+                break;
+            case 8:
+                Load(massive);
                 break;
             case 9:
                 massive.Clear();
