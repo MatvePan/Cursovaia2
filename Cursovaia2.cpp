@@ -3,6 +3,7 @@
 #include "massive.h"
 #include "fstream"
 #include "cmath"
+#include "numeric"
 using namespace std;
 
 struct Student{ //Структуры данных студента
@@ -13,6 +14,7 @@ struct Student{ //Структуры данных студента
     string extra=" "; //Дополнительная информация студента
     int index=0; //Индексация студента
     int allnum=0; //Общий номер студента
+    int sum=0;
 };
 
 void PrintStudent(Student student){ //Функция вывода данных студента
@@ -22,6 +24,7 @@ void PrintStudent(Student student){ //Функция вывода данных �
     for(int i=0; i<5; i++)
         cout << student.studnum[i] << "|";
     cout << "\n";
+    cout << "Rating amount: " << student.sum << "\n";
     cout << "Student salary: " << student.salary << "\n";
     cout << "Student extra information: " << student.extra << "\n";
 }
@@ -41,8 +44,10 @@ Student WriteStudent(){ //Функция ввода данных студент�
     cout << "Enter student index\n";
     cin >> student.index;
     cout << "Enter student evaluations(max-5)\n";
-    for(int i=0; i<5; i++)
+    for(int i=0; i<5; i++){
         cin >> student.studnum[i];
+        student.sum+=student.studnum[i];
+    }
     student.allnum++;
     return student;
 }
@@ -61,8 +66,10 @@ Student InviteGroup(int group){ //Функция добавления студе
     cout << "Enter student index\n";
     cin >> student.index;
     cout << "Enter student evaluations(max-5)\n";
-    for(int i=0; i<5; i++)
+    for(int i=0; i<5; i++) {
         cin >> student.studnum[i];
+        student.sum+=student.studnum[i];
+    }
     student.allnum++;
     return student;
 }
@@ -155,6 +162,7 @@ void StudentSearch(Massive<Student> massive){ //Функция поиска оп
     cout << "3. Search by evaluations\n";
     cout << "4. Search by salary size\n";
     cout << "5. Search by index\n";
+    cout << "6. Search by rating amount\n";
     cout << "Enter number for choose\n";
     int mode;
     int table1[5];
@@ -221,6 +229,15 @@ void StudentSearch(Massive<Student> massive){ //Функция поиска оп
             cin >> mode;
             for(int i=0; i<massive.Count(); i++){
                 if(massive.Number(i).index==mode){
+                    PrintStudent(massive.Number(i));
+                    inStud=true;
+                }
+            }
+        case 6:
+            cout << "Enter student rating amount\n";
+            cin >> mode;
+            for(int i=0; i<massive.Count(); i++){
+                if(massive.Number(i).sum==mode){
                     PrintStudent(massive.Number(i));
                     inStud=true;
                 }
@@ -306,6 +323,33 @@ void AboutGroup(Massive<Student> massive){ //Функция получения �
         cout << "No group\n";
 }
 
+void OneTable(Massive<Student> massive){
+    int num;
+    int col=0;
+    cout << "Enter rating amount\n";
+    cin >> num;
+    for(int i=0; i<massive.Count(); i++){
+        if(massive.Number(i).sum==num){
+            col++;
+        }
+    }
+    cout << "Amount|Quantity\n";
+    cout << "  " << num << "  |  " << col << "\n";
+}
+
+void AllTable(Massive<Student> massive){
+    int col=0;
+    cout << "Amount|Quantity\n";
+    for(int i=0; i<massive.Count(); i++){
+        for(int j=0; j<massive.Count(); j++){
+            if(massive.Number(j).sum==i){
+                col++;
+            }
+        }
+        cout << "  " << i << "  |  " << col << "\n";
+    }
+}
+
 int Fun1(string word){
     int num=0, j=0;
     int* table=new int(word.size());
@@ -389,6 +433,9 @@ int main(){ //Главная функция
         cout << "22. Delete students from group\n";
         cout << "23. Edit group number\n";
         cout << "24. Show group students information\n";
+        cout << "Output in the table\n";
+        cout << "31. Show table\n";
+        cout << "32. Show all table\n";
         cout << "Other\n";
         cout << "7. Save data\n";
         cout << "8. load data\n";
@@ -423,6 +470,12 @@ int main(){ //Главная функция
                 break;
             case 24:
                 AboutGroup(massive);
+                break;
+            case 31:
+                OneTable(massive);
+                break;
+            case 32:
+                AllTable(massive);
                 break;
             case 7:
                 Save(massive);

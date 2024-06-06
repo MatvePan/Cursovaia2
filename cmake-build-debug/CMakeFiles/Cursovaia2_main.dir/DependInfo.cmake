@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Cursovaia2-main/Cursovaia2.cpp" "CMakeFiles/Cursovaia2_main.dir/Cursovaia2.cpp.obj" "gcc" "CMakeFiles/Cursovaia2_main.dir/Cursovaia2.cpp.obj.d"
+  "C:/Users/matve/Desktop/Cursovaia2-main/Cursovaia2.cpp" "CMakeFiles/Cursovaia2_main.dir/Cursovaia2.cpp.obj" "gcc" "CMakeFiles/Cursovaia2_main.dir/Cursovaia2.cpp.obj.d"
   )
 
 # Targets to which this target links.

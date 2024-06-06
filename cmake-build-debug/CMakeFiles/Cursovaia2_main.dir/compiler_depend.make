@@ -141,7 +141,10 @@ CMakeFiles/Cursovaia2_main.dir/Cursovaia2.cpp.obj: ../Cursovaia2.cpp \
   C:/Program\ Files/JetBrains/CLion\ 2022.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/c++io.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/fstream.tcc \
   C:/Program\ Files/JetBrains/CLion\ 2022.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cmath \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2/bin/mingw/x86_64-w64-mingw32/include/math.h
+  C:/Program\ Files/JetBrains/CLion\ 2022.2/bin/mingw/x86_64-w64-mingw32/include/math.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/numeric \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_numeric.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bit
 
 
 C:/Program\ Files/JetBrains/CLion\ 2022.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ios:
@@ -425,3 +428,9 @@ C:/Program\ Files/JetBrains/CLion\ 2022.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/1
 C:/Program\ Files/JetBrains/CLion\ 2022.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cmath:
 
 C:/Program\ Files/JetBrains/CLion\ 2022.2/bin/mingw/x86_64-w64-mingw32/include/math.h:
+
+C:/Program\ Files/JetBrains/CLion\ 2022.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/numeric:
+
+C:/Program\ Files/JetBrains/CLion\ 2022.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_numeric.h:
+
+C:/Program\ Files/JetBrains/CLion\ 2022.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bit:
