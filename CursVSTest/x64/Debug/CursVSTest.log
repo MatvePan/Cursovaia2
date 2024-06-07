@@ -1,0 +1,6 @@
+﻿  CursVSTest.cpp
+C:\Users\matve\source\repos\CursVSTest\CursVSTest\CursVSTest.cpp(352,25): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\matve\source\repos\CursVSTest\CursVSTest\CursVSTest.cpp(355,16): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\matve\source\repos\CursVSTest\CursVSTest\CursVSTest.cpp(356,25): warning C4244: +=: преобразование "double" в "int", возможна потеря данных
+C:\Users\matve\source\repos\CursVSTest\CursVSTest\CursVSTest.cpp(369): warning C4172: возвращение адреса локальной или временной переменной : toble
+  CursVSTest.vcxproj -> C:\Users\matve\source\repos\CursVSTest\x64\Debug\CursVSTest.exe
