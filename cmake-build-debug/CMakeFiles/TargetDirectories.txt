@@ -1,3 +1,0 @@
-C:/Users/matve/Desktop/Cursovaia2-main/cmake-build-debug/CMakeFiles/Cursovaia2_main.dir
-C:/Users/matve/Desktop/Cursovaia2-main/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/matve/Desktop/Cursovaia2-main/cmake-build-debug/CMakeFiles/rebuild_cache.dir
