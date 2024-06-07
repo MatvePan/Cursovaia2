@@ -453,9 +453,9 @@ void Load(Massive<Student> massive) { //Функция загрузки из ф�
 int main() { //Главная функция
 	Massive<Student> massive;
 	int mode;
-	cout << "Only english support\n";
 	while (true) {
 		system("pause");
+		cout << "!!Only english support!!\n";
 		cout << "Students\n";
 		cout << "11. Add student\n";
 		cout << "12. Delete student\n";
