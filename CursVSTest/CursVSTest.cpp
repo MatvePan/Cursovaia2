@@ -336,7 +336,7 @@ void OneTable(Massive<Student> massive) {
 
 void AllTable(Massive<Student> massive) {
     cout << "Amount|Quantity\n";
-    for (int i = 2; i < 25; i++) {
+    for (int i = 0; i < 25; i++) {
         int col = 0;
         for (int j = 0; j < massive.Count(); j++) {
             if (massive.Number(j).sum == i) {
