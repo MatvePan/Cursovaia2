@@ -113,11 +113,13 @@ void DeleteStudent(Massive<Student> massive) { //Функция удаления
 		if (massive.Number(i).index == del) {
 			massive.Remove(i);
 			inStock = true;
+			cout << "Deleted\n";
 			break;
 		}
 	}
-	if (inStock)
+	if (!inStock) {
 		cout << "This student is not here\n";
+	}
 }
 
 void StudentEditor(Massive<Student> massive) { //Функция редактирования данных студентов
@@ -383,17 +385,21 @@ void AllTable(Massive<Student> massive) {
 	}
 }
 
-int Fun1(string word) {
-	int num = 0, j = 0;
-	int* table = new int(word.size());
+int WordReader(string word) {
+	int num = 0;
+	int k = 0;
+	int nom;
+	int *table = new int(word.size()+1);
 	for (int i = 0; i < word.size(); i++)
-		table[i] = word[i] - 48;
-	for (int i = word.size() - 1; i >= 0; i--, j++)
-		num += table[i] * pow(10, j);
+		table[i] = word[i] - '0';
+	for (int j = word.size() - 1; j >= 0; j--) {
+		num += table[j] * pow(10, k);
+		k++;
+	}
 	return num;
 }
 
-int* Fun2(string word) {
+int* MassiveReader(string word) {
 	int toble[5] = {};
 	int j = 0;
 	for (int i = 0; i < word.size(); i++) {
@@ -405,49 +411,60 @@ int* Fun2(string word) {
 	return toble;
 }
 
-void Save(Massive<Student> massive) { //Функция записи в файл
+void Load(Massive<Student>& massive) { //Функция чтения из файла
 	Student student;
-	ifstream save;
-	save.open("save.txt");
+	ifstream load;
+	load.open("save.txt");
 	string word;
-	int* table;
 	int t = 0;
-	while (getline(save, word)) {
+	int* table;
+	while (getline(load, word)) {
 		t++;
 		switch (t) {
 		case 1:
 			student.fio = word;
 			break;
 		case 2:
-			student.group = Fun1(word);
+			student.group = WordReader(word);
 			break;
 		case 3:
-			student.index = Fun1(word);
+			student.index = WordReader(word);
 			break;
 		case 4:
-			table = Fun2(word);
-			for (int i = 0; i < 5; i++)
-				student.studnum[i] = table[i];
+			student.salary = WordReader(word);
 			break;
 		case 5:
-			student.salary = Fun1(word);
+			table = MassiveReader(word);
+			for (int i = 0; i < 5; i++) {
+				student.studnum[i] = table[i];
+			}
 			break;
+		case 6:
+			student.sum = WordReader(word);
+			massive.Add(student);
+			t = 0;
 		}
 	}
+	cout << "Loaded!\n";
+	load.close();
 }
 
-void Load(Massive<Student> massive) { //Функция загрузки из файла
-	ofstream load;
-	load.open("load.txt");
+void Save(Massive<Student> massive) { //Функция записи в файл
+	ofstream save;
+	save.open("save.txt");
 	for (int i = 0; i < massive.Count(); i++) {
 		Student student = massive.Number(i);
-		load << student.fio << "|" << student.index << "\n";
-		load << student.group << "\n";
-		for (int i = 0; i < 5; i++)
-			load << student.studnum[i] << "|" << "\n";
-		load << student.salary << "\n";
+		save << student.fio << "\n";
+		save << student.group << "\n";
+		save << student.index << "\n";
+		save << student.salary << "\n";
+		for (int j = 0; j < 5; j++) {
+			save << student.studnum[j] << " ";
+		}
+		save  << "\n" << student.sum << "\n";
 	}
-	load.close();
+	cout << "Saved!\n";
+	save.close();
 }
 
 int main() { //Главная функция
@@ -472,7 +489,7 @@ int main() { //Главная функция
 		cout << "32. Show all table\n";
 		cout << "Other\n";
 		cout << "7. Save data\n";
-		cout << "8. load data\n";
+		cout << "8. Load data\n";
 		cout << "9. Erase data\n";
 		cout << "0. Exit\n";
 		cout << "Enter number for choose\n";
