@@ -4,33 +4,39 @@ AAA AA A
 777
 2 3 4 5 4 
 18
+aaa
 B BB BBB
 2222
 2
 888
 2 2 2 2 2 
 10
+bbb
 CCC CC C
 2222
 3
 0
 3 3 3 3 3 
 15
+ccc
 DDD DD D
 3333
 4
 0
 4 4 4 4 4 
 20
+ddd
 EEE EE E
 3333
 5
 1000
 5 5 5 5 5 
 25
+eee
 FFF FF F
 3333
 6
 0
 4 2 3 3 3 
 15
+fff

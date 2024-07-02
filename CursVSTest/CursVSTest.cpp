@@ -27,10 +27,28 @@ void PrintStudent(Student student) { //Функция вывода данных 
 	cout << "Student extra information: " << student.extra << "\n";
 }
 
+int IndexTest(Massive<Student> massive) {
+	while (true) {
+		int ind;
+		bool uniq = true;
+		cin >> ind;
+		for (int i = 0; i < massive.Count(); i++) {
+			if (massive.Number(i).index == ind) {
+				cout << "Index is busy\n";
+				cout << "Enter new index\n";
+				uniq = false;
+			}
+		}
+		if (uniq) {
+			return ind;
+		}
+	}
+}
+
 Student WriteStudent(Massive<Student> massive) { //Функция ввода данных студента
 	Student student;
+	cout << massive.Count() << "\n";
 	string f, l, o;
-	bool cycle = true;
 	cout << "Enter student FIO\n";
 	cin >> f >> l >> o;
 	student.fio = f + " " + l + " " + o;
@@ -43,20 +61,9 @@ Student WriteStudent(Massive<Student> massive) { //Функция ввода д�
 	cout << "Enter student index\n";
 	if (massive.Count() == 0) {
 		cin >> student.index;
-		cycle = false;
 	}
-	while(cycle){
-		cin >> student.index;
-		for (int i = 0; i < massive.Count(); i++) {
-			if (massive.Number(i).index == student.index) {
-				cout << "This index is busy\n";
-				cout << "Enter new index\n";
-			}
-			else {
-				cycle = false;
-				break;
-			}
-		}
+	else {
+		student.index = IndexTest(massive);
 	}
 	cout << "Enter student evaluations(max-5)\n";
 	for (int i = 0; i < 5; i++) {
@@ -81,20 +88,9 @@ Student InviteGroup(Massive<Student> massive, int group) { //Функция до
 	cout << "Enter student index\n";
 	if (massive.Count() == 0) {
 		cin >> student.index;
-		cycle = false;
 	}
-	while (cycle) {
-		cin >> student.index;
-		for (int i = 0; i < massive.Count(); i++) {
-			if (massive.Number(i).index == student.index) {
-				cout << "This index is busy\n";
-				cout << "Enter new index\n";
-			}
-			else {
-				cycle = false;
-				break;
-			}
-		}
+	else {
+		student.index = IndexTest(massive);
 	}
 	cout << "Enter student evaluations(max-5)\n";
 	for (int i = 0; i < 5; i++) {
@@ -104,7 +100,7 @@ Student InviteGroup(Massive<Student> massive, int group) { //Функция до
 	return student;
 }
 
-void DeleteStudent(Massive<Student> massive) { //Функция удаления студентов
+void DeleteStudent(Massive<Student>& massive) { //Функция удаления студентов
 	int del;
 	bool inStock = false;
 	cout << "Enter student index\n";
@@ -122,14 +118,14 @@ void DeleteStudent(Massive<Student> massive) { //Функция удаления
 	}
 }
 
-void StudentEditor(Massive<Student> massive) { //Функция редактирования данных студентов
+void StudentEditor(Massive<Student>& massive) { //Функция редактирования данных студентов
 	bool inStud = false;
 	int num;
 	cout << "Enter student number\n";
 	cin >> num;
 	for (int i = 0; i < massive.Count(); i++) {
 		if (massive.Number(i).index == num) {
-			cout << "Student Editor\n;";
+			cout << "Student Editor\n";
 			cout << "1. New FIO\n";
 			cout << "2. New group\n";
 			cout << "3. New evaluations\n";
@@ -166,7 +162,7 @@ void StudentEditor(Massive<Student> massive) { //Функция редактир
 			case 5:
 				cout << "Enter new student index\n";
 				cin >> num;
-				newStudent.index = num;
+				newStudent.index = IndexTest(massive);
 				break;
 			case 6:
 				cout << "Enter new student extra information\n";
@@ -292,7 +288,7 @@ void ShowAll(Massive<Student> massive) { //Функция показа данн�
 	}
 }
 
-void AddGroup(Massive<Student> massive) { //Функция создания группы
+void AddGroup(Massive<Student>& massive) { //Функция создания группы
 	int group;
 	cout << "Enter group number\n";
 	cin >> group;
@@ -307,7 +303,7 @@ void AddGroup(Massive<Student> massive) { //Функция создания гр
 	}
 }
 
-void DeleteGroup(Massive<Student> massive) { //Функция удаления группы
+void DeleteGroup(Massive<Student>& massive) { //Функция удаления группы
 	int group;
 	bool DidntLiveGroup = false;
 	cout << "Enter group number\n";
@@ -322,7 +318,7 @@ void DeleteGroup(Massive<Student> massive) { //Функция удаления �
 		cout << "No group\n";
 }
 
-void GroupEditor(Massive<Student> massive) { //Функция редактирования группы
+void GroupEditor(Massive<Student>& massive) { //Функция редактирования группы
 	int oldnum, newnum;
 	bool Group;
 	cout << "Enter old group number\n";
@@ -385,7 +381,7 @@ void AllTable(Massive<Student> massive) {
 	}
 }
 
-int WordReader(string word) {
+int NumReader(string word) {
 	int num = 0;
 	int k = 0;
 	int nom;
@@ -412,7 +408,7 @@ int* MassiveReader(string word) {
 }
 
 void Load(Massive<Student>& massive) { //Функция чтения из файла
-	Student student;
+	Student astudent;
 	ifstream load;
 	load.open("save.txt");
 	string word;
@@ -422,26 +418,29 @@ void Load(Massive<Student>& massive) { //Функция чтения из фай
 		t++;
 		switch (t) {
 		case 1:
-			student.fio = word;
+			astudent.fio = word;
 			break;
 		case 2:
-			student.group = WordReader(word);
+			astudent.group = NumReader(word);
 			break;
 		case 3:
-			student.index = WordReader(word);
+			astudent.index = NumReader(word);
 			break;
 		case 4:
-			student.salary = WordReader(word);
+			astudent.salary = NumReader(word);
 			break;
 		case 5:
 			table = MassiveReader(word);
 			for (int i = 0; i < 5; i++) {
-				student.studnum[i] = table[i];
+				astudent.studnum[i] = table[i];
 			}
 			break;
 		case 6:
-			student.sum = WordReader(word);
-			massive.Add(student);
+			astudent.sum = NumReader(word);
+			break;
+		case 7:
+			astudent.extra = (word);
+			massive.Add(astudent);
 			t = 0;
 		}
 	}
@@ -462,6 +461,7 @@ void Save(Massive<Student> massive) { //Функция записи в файл
 			save << student.studnum[j] << " ";
 		}
 		save  << "\n" << student.sum << "\n";
+		save << student.extra << "\n";
 	}
 	cout << "Saved!\n";
 	save.close();
@@ -473,6 +473,7 @@ int main() { //Главная функция
 	while (true) {
 		system("pause");
 		cout << "!!Only english support!!\n";
+		cout << "!Recommend download files(press 8)!\n";
 		cout << "Students\n";
 		cout << "11. Add student\n";
 		cout << "12. Delete student\n";
