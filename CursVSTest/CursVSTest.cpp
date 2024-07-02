@@ -47,7 +47,6 @@ struct Student { //Структуры данных студента
 
 /*3*/Student WriteStudent(Massive<Student> massive) { //Функция ввода данных студента
 	Student student;
-	cout << massive.Count() << "\n";
 	string f, l, o;
 	cout << "Enter student FIO\n";
 	cin >> f >> l >> o;
@@ -152,8 +151,10 @@ struct Student { //Структуры данных студента
 				break;
 			case 3:
 				cout << "Enter new evaluations\n";
-				for (int i = 0; i < 5; i++)
+				for (int i = 0; i < 5; i++) {
 					cin >> newStudent.studnum[i];
+					newStudent.sum += newStudent.studnum[i];
+				}
 				break;
 			case 4:
 				cout << "Enter new student salary size\n";
@@ -162,7 +163,6 @@ struct Student { //Структуры данных студента
 				break;
 			case 5:
 				cout << "Enter new student index\n";
-				cin >> num;
 				newStudent.index = IndexTest(massive);
 				break;
 			case 6:
@@ -184,7 +184,7 @@ struct Student { //Структуры данных студента
 		cout << "This student is not here\n";
 }
 
-/*7*/void StudentSearch(Massive<Student> massive) { //Функция поиска определённых студентов
+/*7*/void StudentSearch(Massive<Student>& massive) { //Функция поиска определённых студентов
 	cout << "Student Searcher\n";
 	cout << "1. Search by FIO\n";
 	cout << "2. Search by group\n";
@@ -196,14 +196,14 @@ struct Student { //Структуры данных студента
 	int mode;
 	int table1[5];
 	bool inStud = false, table;
-	string fio;
 	cin >> mode;
+	string f, k, o;
 	switch (mode) {
 	case 1:
 		cout << "Enter student FIO\n";
-		cin >> fio;
+		cin >> f >> k >> o;
 		for (int i = 0; i < massive.Count(); i++) {
-			if (massive.Number(i).fio == fio) {
+			if (massive.Number(i).fio == (f + " " + k + " " + o)) {
 				PrintStudent(massive.Number(i));
 				inStud = true;
 			}
@@ -216,6 +216,8 @@ struct Student { //Структуры данных студента
 		cin >> mode;
 		for (int i = 0; i < massive.Count(); i++) {
 			if (massive.Number(i).group == mode) {
+				PrintStudent(massive.Number(i));
+				cout << "\n";
 				inStud = true;
 			}
 		}
@@ -247,6 +249,7 @@ struct Student { //Структуры данных студента
 		for (int i = 0; i < massive.Count(); i++) {
 			if (massive.Number(i).salary == mode) {
 				PrintStudent(massive.Number(i));
+				cout << "\n";
 				inStud = true;
 			}
 		}
@@ -259,6 +262,7 @@ struct Student { //Структуры данных студента
 		for (int i = 0; i < massive.Count(); i++) {
 			if (massive.Number(i).index == mode) {
 				PrintStudent(massive.Number(i));
+				cout << "\n";
 				inStud = true;
 			}
 		}
@@ -269,6 +273,7 @@ struct Student { //Структуры данных студента
 		for (int i = 0; i < massive.Count(); i++) {
 			if (massive.Number(i).sum == mode) {
 				PrintStudent(massive.Number(i));
+				cout << "\n";
 				inStud = true;
 			}
 		}
@@ -306,16 +311,18 @@ struct Student { //Структуры данных студента
 
 /*10*/void DeleteGroup(Massive<Student>& massive) { //Функция удаления группы
 	int group;
-	bool DidntLiveGroup = false;
+	bool LiveGroup = false;
 	cout << "Enter group number\n";
 	cin >> group;
-	for (int i = 0; i < massive.Count(); i++) {
-		if (massive.Number(i).group == group) {
-			massive.Remove(i);
-			DidntLiveGroup = true;
+	for (int j = 0; j < 2; j++) {
+		for (int i = 0; i < massive.Count(); i++) {
+			if (massive.Number(i).group == group) {
+				massive.Remove(i);
+				LiveGroup = true;
+			}
 		}
 	}
-	if (!DidntLiveGroup)
+	if (!LiveGroup)
 		cout << "No group\n";
 }
 
