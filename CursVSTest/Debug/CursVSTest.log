@@ -1,7 +1,7 @@
 ﻿  CursVSTest.cpp
-c:\users\матвей\source\repos\cursvstest\cursvstest\cursvstest.cpp(400): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\матвей\source\repos\cursvstest\cursvstest\cursvstest.cpp(403): warning C4244: +=: преобразование "double" в "int", возможна потеря данных
-c:\users\матвей\source\repos\cursvstest\cursvstest\cursvstest.cpp(398): warning C4101: nom: неиспользованная локальная переменная
-c:\users\матвей\source\repos\cursvstest\cursvstest\cursvstest.cpp(412): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\матвей\source\repos\cursvstest\cursvstest\cursvstest.cpp(418): warning C4172: возвращение адреса локальной или временной переменной : toble
+c:\users\матвей\source\repos\cursvstest\cursvstest\cursvstest.cpp(390): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\матвей\source\repos\cursvstest\cursvstest\cursvstest.cpp(393): warning C4244: +=: преобразование "double" в "int", возможна потеря данных
+c:\users\матвей\source\repos\cursvstest\cursvstest\cursvstest.cpp(388): warning C4101: nom: неиспользованная локальная переменная
+c:\users\матвей\source\repos\cursvstest\cursvstest\cursvstest.cpp(402): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\матвей\source\repos\cursvstest\cursvstest\cursvstest.cpp(408): warning C4172: возвращение адреса локальной или временной переменной : toble
   CursVSTest.vcxproj -> C:\Users\Матвей\source\repos\CursVSTest\Debug\CursVSTest.exe
