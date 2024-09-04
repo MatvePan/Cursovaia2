@@ -1,7 +1,6 @@
 ﻿  KursTest2.cpp
-C:\Users\matve\source\repos\KursTest2\KursTest2.cpp(491,22): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\matve\source\repos\KursTest2\KursTest2.cpp(494,13): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\matve\source\repos\KursTest2\KursTest2.cpp(495,19): warning C4244: +=: преобразование "double" в "int", возможна потеря данных
-C:\Users\matve\source\repos\KursTest2\KursTest2.cpp(490,6): warning C4101: nom: неиспользованная локальная переменная
-C:\Users\matve\source\repos\KursTest2\KursTest2.cpp(510,1): warning C4172: возвращение адреса локальной или временной переменной : toble
+C:\Users\matve\source\repos\KursTest2\KursTest2.cpp(503,13): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\matve\source\repos\KursTest2\KursTest2.cpp(504,19): warning C4244: +=: преобразование "double" в "int", возможна потеря данных
+C:\Users\matve\source\repos\KursTest2\KursTest2.cpp(499,6): warning C4101: nom: неиспользованная локальная переменная
+C:\Users\matve\source\repos\KursTest2\KursTest2.cpp(519,1): warning C4172: возвращение адреса локальной или временной переменной : toble
   KursTest2.vcxproj -> C:\Users\matve\source\repos\KursTest2\x64\Debug\KursTest2.exe
