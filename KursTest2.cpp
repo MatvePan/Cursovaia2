@@ -561,7 +561,7 @@ struct Student { //Структуры данных студента
 	load.close();
 }
 
-void Check(Massive<Student>& massive) { //Функция чтения из файла
+/*19*/void Check(Massive<Student>& massive) { //Функция чтения из файла
 	Student astudent;
 	ifstream check;
 	check.open("save.txt");
@@ -608,7 +608,7 @@ void Check(Massive<Student>& massive) { //Функция чтения из фа�
 	check.close();
 }
 
-/*19*/void Save(Massive<Student> massive) { //Функция записи в файл
+/*20*/void Save(Massive<Student> massive) { //Функция записи в файл
 	ofstream save;
 	save.open("save.txt");
 	for (int i = 0; i < massive.Count(); i++) {
@@ -627,9 +627,10 @@ void Check(Massive<Student>& massive) { //Функция чтения из фа�
 	save.close();
 }
 
-/*20*/int main() { //Главная функция
+/*21*/int main() { //Главная функция
 	Massive<Student> massive;
 	Check(massive);
+	bool loaded = true;
 	int mode;
 	cout << "!!Only english support!!\n";
 	while (true) {
@@ -693,10 +694,17 @@ void Check(Massive<Student>& massive) { //Функция чтения из фа�
 			Save(massive);
 			break;
 		case 8:
-			Load(massive);
+			if (!loaded) {
+				Load(massive);
+			}
+			else {
+				cout << "File has been loaded\n";
+			}
 			break;
 		case 9:
 			massive.Clear();
+			loaded = false;
+			cout << "Cleared!\n";
 			break;
 		case 0:
 			return 0;
