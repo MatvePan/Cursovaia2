@@ -514,47 +514,6 @@ struct Student { //Структуры данных студента
 
 /*17*/void Load(Massive<Student>& massive) { //Функция чтения из файла
 	Student astudent;
-	ifstream load;
-	load.open("save.txt");
-	string word;
-	int t = 0;
-	int* table;
-	while (getline(load, word)) {
-		t++;
-		switch (t) {
-		case 1:
-			astudent.fio = word;
-			break;
-		case 2:
-			astudent.group = NumReader(word);
-			break;
-		case 3:
-			astudent.index = NumReader(word);
-			break;
-		case 4:
-			astudent.salary = NumReader(word);
-			break;
-		case 5:
-			table = MassiveReader(word);
-			for (int i = 0; i < 5; i++) {
-				astudent.studnum[i] = table[i];
-			}
-			break;
-		case 6:
-			astudent.sum = NumReader(word);
-			break;
-		case 7:
-			astudent.extra = (word);
-			massive.Add(astudent);
-			t = 0;
-		}
-	}
-	cout << "Loaded!\n";
-	load.close();
-}
-
-/*18*/void Check(Massive<Student>& massive) { //Функция чтения из файла
-	Student astudent;
 	ifstream check;
 	check.open("save.txt");
 	if (check) {
@@ -600,7 +559,7 @@ struct Student { //Структуры данных студента
 	check.close();
 }
 
-/*19*/void Save(Massive<Student> massive) { //Функция записи в файл
+/*18*/void Save(Massive<Student> massive) { //Функция записи в файл
 	ofstream save;
 	save.open("save.txt");
 	for (int i = 0; i < massive.Count(); i++) {
@@ -619,37 +578,43 @@ struct Student { //Структуры данных студента
 	save.close();
 }
 
-/*20*/int main() { //Главная функция
+/*19*/int main() { //Главная функция
 	Massive<Student> massive;
-	Check(massive);
+	Load(massive);
 	bool loaded = true;
 	int mode;
 	cout << "!!Only english support!!\n";
 	while (true) {
 		system("pause");
-		cout << "Students\n";
+		cout << "=>Students\n";
 		cout << "11. Add student\n";
 		cout << "12. Delete student\n";
 		cout << "13. Edit student\n";
 		cout << "14. Show student\n";
 		cout << "15. Show all students\n";
-		cout << "Group\n";
+		cout << "=>Group\n";
 		cout << "21. Add students into group\n";
 		cout << "22. Delete students from group\n";
 		cout << "23. Edit group number\n";
 		cout << "24. Show group students information\n";
-		cout << "Output in the table\n";
+		cout << "=>Output in the table\n";
 		cout << "31. Show table\n";
 		cout << "32. Show all table\n";
-		cout << "Other\n";
+		cout << "=>Data\n";
 		cout << "7. Save data\n";
 		cout << "8. Load data\n";
 		cout << "9. Erase data\n";
 		cout << "0. Exit\n";
-		cout << "Enter number for choose\n";
+		cout << "=>Enter number for choose\n";
 		cin >> mode;
 		switch (mode) {
 		case 11:
+			if (!loaded) {
+				Load(massive);
+			}
+			else {
+				loaded = true;
+			}
 			massive.Add(WriteStudent(massive));
 			break;
 		case 12:
@@ -690,7 +655,8 @@ struct Student { //Структуры данных студента
 				Load(massive);
 			}
 			else {
-				cout << "File has been loaded\n";
+				cout << "File has already been uploaded\n";
+				loaded = true;
 			}
 			break;
 		case 9:
